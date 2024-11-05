@@ -1,8 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import type { MouseEvent } from 'react'
+import logo from './logo.svg'
+import './App.css'
 
 function App() {
+  const fn = (event: MouseEvent<HTMLButtonElement>, name: string) => {
+    event.preventDefault()
+    console.log('clicked ...... ', name)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -10,6 +16,9 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
+        <div>
+          <button onClick={event => fn(event, 'tom')}>click tom</button>
+        </div>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -20,7 +29,7 @@ function App() {
         </a>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

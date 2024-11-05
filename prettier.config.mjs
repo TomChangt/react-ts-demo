@@ -2,7 +2,7 @@ export default {
   printWidth: 100, // 每行代码长度
   tabWidth: 2, // 缩进长度
   useTabs: false, // 使用空格而不是tab缩进
-  semi: true, // 句末使用分号
+  semi: false, // 句末使用分号
   singleQuote: true, // 使用单引号
   quoteProps: 'as-needed', // 对象的key仅在必要时用引号
   jsxSingleQuote: false, // jsx中使用双引号
@@ -16,4 +16,4 @@ export default {
   htmlWhitespaceSensitivity: 'css', // 根据显示样式决定html要不要折行
   endOfLine: 'lf', // 换行符使用 lf
   embeddedLanguageFormatting: 'auto', // 格式化嵌入的内容
-};
+}
