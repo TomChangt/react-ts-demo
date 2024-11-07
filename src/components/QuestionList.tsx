@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
 import { QuestionCard } from './QuestionCard'
+import { produce } from 'immer'
 
 interface QuestionProps {
   id: string
@@ -11,19 +12,38 @@ export const QuestionList: FC = () => {
   const [questionList, setQuestionList] = useState<QuestionProps[]>([])
 
   function deleteQuestion(id: string) {
-    setQuestionList(questionList.filter(q => q.id !== id))
+    setQuestionList(
+      produce(draft => {
+        const q = draft.find(q => q.id === id)
+        if (q) {
+          draft.splice(
+            draft.findIndex(q => q.id === id),
+            1
+          )
+        }
+      })
+    )
   }
 
   function publishQuestion(id: string) {
     // isPublished取反
     setQuestionList(
-      questionList.map(q => (q.id === id ? { ...q, isPublished: !q.isPublished } : q))
+      produce(draft => {
+        const q = draft.find(q => q.id === id)
+        if (q) {
+          q.isPublished = !q.isPublished
+        }
+      })
     )
   }
 
   function addQuestion() {
     const id = Math.random().toString().slice(2, 6)
-    setQuestionList([...questionList, { id, title: '问题' + id, isPublished: false }])
+    setQuestionList(
+      produce(draft => {
+        draft.push({ id, title: '问题' + id, isPublished: false })
+      })
+    )
   }
 
   return (
