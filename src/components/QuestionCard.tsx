@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import './QuestionCard.css'
+import styles from './QuestionCard.module.scss'
 
 interface QuestionCardProps {
   id: string
@@ -23,10 +23,10 @@ export const QuestionCard: FC<QuestionCardProps> = props => {
   }
 
   return (
-    <div key={id} className="question-card">
+    <div key={id} className={styles['question-card']}>
       <strong>{title}</strong>
       &nbsp;
-      {isPublished ? <span style={{ color: 'green' }}>已发布</span> : <span>未发布</span>}
+      {isPublished ? <span className={styles['published-span']}>已发布</span> : <span>未发布</span>}
       &nbsp;
       <button onClick={() => edit(id)}>编辑</button>
       &nbsp;
